@@ -1,0 +1,70 @@
+/* Home */
+
+.headerTitle {
+  text-align: center;
+  background: linear-gradient(to right, #ffa500, #ff5733);
+  padding: 10px;
+  /* width: 100%; */
+}
+
+.tabs {
+  background: linear-gradient(to right, #ffa500, #ff5733);
+  padding: 1px;
+  margin-top: -21px;
+}
+
+.rootLogin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.paperLogin{
+  width: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  margin-bottom:200px;
+}
+
+.formLogin{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.requiredLabel::after {
+  content: "*";
+  color: red;
+}
+
+.rootRegister{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.paperRegister{
+  width: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:50px;
+}
+
+.formRegister{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.requiredLabelRegister{
+  content: "*";
+  color: red;
+}
+
