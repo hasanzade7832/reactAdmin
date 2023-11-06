@@ -37,7 +37,7 @@ const LoginForm = () => {
   };
 
   const HandleSubmit = () => {
-    setOpen(true);
+    setOpen(false);
    
     event.preventDefault();
     const weekDay = [
@@ -80,11 +80,15 @@ const LoginForm = () => {
         .then((res) => {
           setMessage("login success"); 
           setSeverity("success")
-          navigate("/home");
+          setTimeout(()=>{
+            navigate("/home");
+          },3000)
+          setOpen(true);
         })
         .catch((err) => {
           setMessage(err.request.responseText); 
-          setSeverity("error")
+          setSeverity("error");
+          setOpen(true);
       });
   };
 
