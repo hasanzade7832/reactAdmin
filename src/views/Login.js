@@ -9,6 +9,8 @@ import Person3Icon from "@mui/icons-material/Person3";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { SyncLoader } from "react-spinners";
+
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const LoginForm = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -42,6 +45,7 @@ const LoginForm = () => {
 
   const HandleSubmit = () => {
     setOpen(false);
+    setLoading(true)
 
     event.preventDefault();
     const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -76,6 +80,7 @@ const LoginForm = () => {
         setMessage("login success");
         setSeverity("success");
         setTimeout(() => {
+          setLoading(false);
           navigate("/home");
         }, 3000);
         setOpen(true);
@@ -84,108 +89,112 @@ const LoginForm = () => {
         setMessage(err.request.responseText);
         setSeverity("error");
         setOpen(true);
+        setLoading(false);
       });
   };
 
   return (
     <>
-      <div className="rootLogin">
-        <Paper className="paperLogin" style={{ borderRadius: "30px" }}>
-          <div style={{ display: "flex", position: "relative" }}>
-            <h1>Login</h1>
-            <img
-              src="./logoNeco.jpg"
-              alt="Neco"
-              style={{
-                width: "50px",
-                height: "50px",
-                objectFit: "cover",
-                position: "absolute",
-                left: 150,
-                top: -10,
-              }}
-            />
-          </div>
-          <FormControl style={{ marginTop: "50px", position: "relative" }}>
-            <InputLabel className="requiredLabel" htmlFor="userName" style={{ marginTop: "-20px" }}>
-              UserName
-            </InputLabel>
-            <Person3Icon
-              sx={{ color: red[500], fontSize: 30 }}
-              style={{ position: "absolute", left: -50 }}
-            />
-            <Input id="userName" value={userName} onChange={handleUserNameChange} required />
-          </FormControl>
-          {/* <FormControl style={{ marginTop: "40px", position: "relative" }}>
-            <InputLabel className="requiredLabel" htmlFor="password" style={{ marginTop: "-20px" }}>
-              Password
-            </InputLabel>
-            <VpnKeyIcon
-              sx={{ color: red[500], fontSize: 30 }}
-              style={{ position: "absolute", left: -50 }}
-            />
-            <Input
-              id="password"
-              type="password"
-              value={password}
-              onChange={handlePasswordChange}
-              required
-            />
-            <VisibilityIcon
-              sx={{ color: red[500], fontSize: 30 }}
-              style={{ position: "absolute", right: -40 }}
-            />
-          </FormControl> */}
-          <FormControl style={{ marginTop: "40px", position: "relative" }}>
-            <InputLabel className="requiredLabel" htmlFor="password" style={{ marginTop: "-20px" }}>
-              Password
-            </InputLabel>
-            <VpnKeyIcon
-              sx={{ color: red[500], fontSize: 30 }}
-              style={{ position: "absolute", left: -50 }}
-            />
-            <Input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={handlePasswordChange}
-              required
-            />
-            {showPassword ? (
-              <VisibilityOffIcon
-                sx={{ color: red[500], fontSize: 30 }}
-                style={{ position: "absolute", right: -40, cursor: "pointer" }}
-                onClick={handleTogglePasswordVisibility}
-              />
-            ) : (
-              <VisibilityIcon
-                sx={{ color: red[500], fontSize: 30 }}
-                style={{ position: "absolute", right: -40, cursor: "pointer" }}
-                onClick={handleTogglePasswordVisibility}
-              />
-            )}
-          </FormControl>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            style={{ marginTop: "60px", backgroundColor: "#dc143c" }}
-            onClick={HandleSubmit}
-            container="variant"
-          >
-            Login
-          </Button>
-        </Paper>
-        <div>
-          <CustomSnackbar
-            open={open}
-            handleClose={handleClose}
-            message={message}
-            severity={severity}
+    <div className="rootLogin">
+      <Paper className="paperLogin" style={{ borderRadius: "30px" }}>
+        <div style={{ position: "relative" }}>
+          <h1>Login</h1>
+          <img
+            src="./logoNeco.jpg"
+            alt="Neco"
+            style={{
+              width: "50px",
+              height: "50px",
+              objectFit: "cover",
+              position: "absolute",
+              left: 150,
+              top: -10,
+            }}
           />
         </div>
+        <div style={{ position: "relative" }}>
+          {loading ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "200px",
+              }}
+            >
+              <SyncLoader size={10} />
+            </div>
+          ) : (
+            <>
+              <FormControl
+                style={{ marginTop: "50px", position: "relative", marginLeft: "50px" }}
+              >
+                <InputLabel
+                  className="requiredLabel"
+                  htmlFor="userName"
+                  style={{ marginTop: "-20px" }}
+                >
+                  UserName
+                </InputLabel>
+                <Person3Icon sx={{ fontSize: 30 }} style={{ position: "absolute", left: -60 }} />
+                <Input id="userName" value={userName} onChange={handleUserNameChange} required />
+              </FormControl>
+              <FormControl
+                style={{ marginTop: "40px", position: "relative", marginLeft: "50px" }}
+              >
+                <InputLabel
+                  className="requiredLabel"
+                  htmlFor="password"
+                  style={{ marginTop: "-20px" }}
+                >
+                  Password
+                </InputLabel>
+                <VpnKeyIcon sx={{ fontSize: 30 }} style={{ position: "absolute", left: -60 }} />
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={handlePasswordChange}
+                  required
+                />
+                {showPassword ? (
+                  <VisibilityOffIcon
+                    sx={{ fontSize: 30 }}
+                    style={{ position: "absolute", right: -40, cursor: "pointer" }}
+                    onClick={handleTogglePasswordVisibility}
+                  />
+                ) : (
+                  <VisibilityIcon
+                    sx={{ fontSize: 30 }}
+                    style={{ position: "absolute", right: -40, cursor: "pointer" }}
+                    onClick={handleTogglePasswordVisibility}
+                  />
+                )}
+              </FormControl>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                style={{ marginTop: "60px", backgroundColor: "#dc143c", marginLeft: "40px" }}
+                onClick={HandleSubmit}
+                container="variant"
+              >
+                Login
+              </Button>
+            </>
+          )}
+        </div>
+      </Paper>
+      <div>
+        <CustomSnackbar
+          open={open}
+          handleClose={handleClose}
+          message={message}
+          severity={severity}
+        />
       </div>
-    </>
+    </div>
+  </>
   );
 };
 

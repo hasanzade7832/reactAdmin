@@ -19,6 +19,17 @@
   height: 100vh;
 }
 
+.rootLogin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../../public/loginBG.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 .paperLogin{
   width: 300px;
   padding: 20px;
