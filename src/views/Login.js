@@ -4,12 +4,12 @@ import projectServices from "../services/project.services";
 import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import CustomSnackbar from "../../src/services/messageShow";
-import { red } from "@mui/material/colors";
+// import { red } from "@mui/material/colors";
 import Person3Icon from "@mui/icons-material/Person3";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { SyncLoader } from "react-spinners";
+import { ScaleLoader } from "react-spinners";
 
 
 const LoginForm = () => {
@@ -82,7 +82,7 @@ const LoginForm = () => {
         setTimeout(() => {
           setLoading(false);
           navigate("/home");
-        }, 3000);
+        }, 500);
         setOpen(true);
       })
       .catch((err) => {
@@ -119,10 +119,10 @@ const LoginForm = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                height: "200px",
+                height: "250px",
               }}
             >
-              <SyncLoader size={10} />
+              <ScaleLoader size={10} />
             </div>
           ) : (
             <>
@@ -136,7 +136,7 @@ const LoginForm = () => {
                 >
                   UserName
                 </InputLabel>
-                <Person3Icon sx={{ fontSize: 30 }} style={{ position: "absolute", left: -60 }} />
+                <Person3Icon sx={{ color:"#dc143c",fontSize: 30 }} style={{ position: "absolute", left: -60 }} color="action"/>
                 <Input id="userName" value={userName} onChange={handleUserNameChange} required />
               </FormControl>
               <FormControl
@@ -149,7 +149,7 @@ const LoginForm = () => {
                 >
                   Password
                 </InputLabel>
-                <VpnKeyIcon sx={{ fontSize: 30 }} style={{ position: "absolute", left: -60 }} />
+                <VpnKeyIcon sx={{ color:"#dc143c",fontSize: 30 }} style={{ position: "absolute", left: -60 }} />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
@@ -160,13 +160,13 @@ const LoginForm = () => {
                 {showPassword ? (
                   <VisibilityOffIcon
                     sx={{ fontSize: 30 }}
-                    style={{ position: "absolute", right: -40, cursor: "pointer" }}
+                    style={{color:"#dc143c", position: "absolute", right: -40, cursor: "pointer" }}
                     onClick={handleTogglePasswordVisibility}
                   />
                 ) : (
                   <VisibilityIcon
                     sx={{ fontSize: 30 }}
-                    style={{ position: "absolute", right: -40, cursor: "pointer" }}
+                    style={{color:"#dc143c",position: "absolute", right: -40, cursor: "pointer" }}
                     onClick={handleTogglePasswordVisibility}
                   />
                 )}

@@ -1,17 +1,11 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import File from "../components/file/file";
-import General from "../components/general/general";
-import Form from "../components/form/form";
-import ApprovalFlow from "../components/approvalflow/approvalflow";
-import Program from "../components/program/program";
-import Project from "../components/project/project";
-import Logs from "../components/logs/logs";
-import AccessApi from "../components/accessapi/accessapi"
+import SubTabs from "../components/home/tabs";
+import tabData from "../components/home/dataTabs"
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,56 +41,51 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs() {
-  const [value, setValue] = React.useState(0);
+  const [tabIndex, setTabIndex] = React.useState(0);
+  const [subTabsContent, setSubTabsContent] = React.useState([]);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setTabIndex(newValue);
   };
+
+  const allSubTabs = tabData;
+
+  useEffect(() => {
+    if (tabIndex >= allSubTabs.length){
+      setSubTabsContent();
+      return;
+    }
+    
+    setSubTabsContent(allSubTabs[tabIndex].subTabs);  
+  }, [tabIndex]);
 
   return (
     <>
       <div>
         <h4 className="headerTitle">Neco organizational Project Management </h4>
       </div>
-      <div style={{marginTop:"20px"}}>
+      <div style={{ marginTop: "20px" }}>
         <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }} className="tabs">
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" textColor="secondary"  variant="scrollable" scrollButtons allowScrollButtonsMobile>
-
-              <Tab label="File" {...a11yProps(0)} />
-              <Tab label="General" {...a11yProps(1)} />
-              <Tab label="Form" {...a11yProps(2)} />
-              <Tab label="ApprovalFlow" {...a11yProps(3)} />
-              <Tab label="Program" {...a11yProps(4)} />
-              <Tab label="Project" {...a11yProps(5)} />
-              <Tab label="Logs" {...a11yProps(6)} />
-              <Tab label="AccessApi" {...a11yProps(7)} />
+            <Tabs
+              value={tabIndex}
+              onChange={handleChange}
+              aria-label="basic tabs example"
+              textColor="secondary"
+              variant="scrollable"
+              scrollButtons
+              allowScrollButtonsMobile
+            >
+               {allSubTabs.map((tab, index) => (
+                <Tab key={index} label={tab.tabName} {...a11yProps(index)} />
+              ))}
             </Tabs>
           </Box>
-          <CustomTabPanel value={value} index={0}>
-            <File/>
+          
+          <CustomTabPanel value={tabIndex} index={tabIndex}>
+          <SubTabs content={subTabsContent} />
           </CustomTabPanel>
-          <CustomTabPanel value={value} index={1}>
-            <General/>
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={2}>
-            <Form/>
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={3}>
-            <ApprovalFlow/>
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={4}>
-            <Program/>
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={5}>
-            <Project/>
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={6}>
-            <Logs/>
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={7}>
-            <AccessApi/>
-          </CustomTabPanel>
+
         </Box>
       </div>
     </>
