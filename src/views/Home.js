@@ -5,7 +5,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import SubTabs from "../components/home/tabs";
-import tabData from "../components/home/dataTabs"
+import tabData from "../components/home/dataTabs";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -51,12 +51,12 @@ export default function BasicTabs() {
   const allSubTabs = tabData;
 
   useEffect(() => {
-    if (tabIndex >= allSubTabs.length){
+    if (tabIndex >= allSubTabs.length) {
       setSubTabsContent();
       return;
     }
-    
-    setSubTabsContent(allSubTabs[tabIndex].subTabs);  
+
+    setSubTabsContent(allSubTabs[tabIndex].subTabs);
   }, [tabIndex]);
 
   return (
@@ -76,17 +76,22 @@ export default function BasicTabs() {
               scrollButtons
               allowScrollButtonsMobile
             >
-               {allSubTabs.map((tab, index) => (
-                <Tab key={index} label={tab.tabName} {...a11yProps(index)} />
+              {allSubTabs.map((tab, index) => (
+                <Tab
+                  key={index}
+                  label={tab.tabName}
+                  {...a11yProps(index)}
+                  style={{ fontSize: "0.8rem", fontWeight: "bold",marginTop:"30px" }}
+                />
               ))}
             </Tabs>
           </Box>
-          
-          <CustomTabPanel value={tabIndex} index={tabIndex}>
-          <SubTabs content={subTabsContent} />
-          </CustomTabPanel>
 
+          <CustomTabPanel value={tabIndex} index={tabIndex}>
+            <SubTabs content={subTabsContent} />
+          </CustomTabPanel>
         </Box>
+
       </div>
     </>
   );
