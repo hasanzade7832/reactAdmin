@@ -15,7 +15,7 @@ root.render(
   // <React.StrictMode>
   //   <App />
   // </React.StrictMode>
-  // <CountProvider>
+  <CountProvider>
     <TextProvider>
       <BrowserRouter>
         <Routes>
@@ -26,8 +26,8 @@ root.render(
           <Route path="/text" element={<Text />} />
         </Routes>
       </BrowserRouter>
-    // </TextProvider>
-  // </CountProvider>
+    </TextProvider>
+  </CountProvider>
 );
 
 // rfce

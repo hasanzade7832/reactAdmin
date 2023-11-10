@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import SubTabs from "../components/home/tabs";
 import tabData from "../components/home/dataTabs";
+import MainComp from "../components/mainComp/mainComp";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -66,7 +67,10 @@ export default function BasicTabs() {
       </div>
       <div style={{ marginTop: "20px" }}>
         <Box sx={{ width: "100%" }}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }} className="tabs">
+          <Box
+            sx={{ borderBottom: 1, borderColor: "divider" }}
+            className="tabs"
+          >
             <Tabs
               value={tabIndex}
               onChange={handleChange}
@@ -81,7 +85,11 @@ export default function BasicTabs() {
                   key={index}
                   label={tab.tabName}
                   {...a11yProps(index)}
-                  style={{ fontSize: "0.8rem", fontWeight: "bold",marginTop:"30px" }}
+                  style={{
+                    fontSize: "0.8rem",
+                    fontWeight: "bold",
+                    marginTop: "30px",
+                  }}
                 />
               ))}
             </Tabs>
@@ -91,7 +99,7 @@ export default function BasicTabs() {
             <SubTabs content={subTabsContent} />
           </CustomTabPanel>
         </Box>
-
+        <MainComp />
       </div>
     </>
   );
