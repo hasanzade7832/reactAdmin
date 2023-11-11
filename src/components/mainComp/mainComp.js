@@ -1,12 +1,12 @@
 import { useText } from "../../contex/TextContext";
 
+
 const MainComp = () => {
-  const { text } = useText();
-  const { data } = useText();
+  const { tableComponent } = useText();
 
   return (
     <>
-      <span>{text}</span> - <span>{data}</span>
+      <span>{tableComponent}</span>
     </>
   );
 };

@@ -4,8 +4,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import SubTabs from "../components/home/tabs";
-import tabData from "../components/home/dataTabs";
+import SubTabs from "../components/homeTabs/tabs";
+import tabData from "../components/homeTabs/dataTabs";
 import MainComp from "../components/mainComp/mainComp";
 
 function CustomTabPanel(props) {

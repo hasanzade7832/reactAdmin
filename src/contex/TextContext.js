@@ -1,16 +1,17 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import TableConfiguration from "../components/generalTab/tableConfiguration";
 
 const TextContext = createContext();
 
 const TextProvider = ({ children }) => {
   const [text, setText] = useState("");
-  const [data, setData] = useState([]);
+  const [tableComponent, setTableComponent] = useState("");
 
   useEffect(() => {
     if (text === "Configuration") {
-      setData([1, 2, 3]);
-    } else {
-      setData([]);
+      setTableComponent(TableConfiguration);
+    } else{
+      setTableComponent("")
     }
   }, [text]);
 
@@ -19,7 +20,7 @@ const TextProvider = ({ children }) => {
   };
 
   return (
-    <TextContext.Provider value={{ text, changeText, data }}>
+    <TextContext.Provider value={{ text, changeText, tableComponent }}>
       {children}
     </TextContext.Provider>
   );
