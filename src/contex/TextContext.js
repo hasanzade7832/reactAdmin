@@ -10,8 +10,8 @@ const TextProvider = ({ children }) => {
   useEffect(() => {
     if (text === "Configuration") {
       setTableComponent(TableConfiguration);
-    } else{
-      setTableComponent("")
+    } else {
+      setTableComponent("");
     }
   }, [text]);
 
@@ -34,4 +34,4 @@ const useText = () => {
   return context;
 };
 
-export { TextProvider, useText };
+export { TextProvider, useText, TextContext };

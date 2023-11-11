@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import SubTabs from "../components/homeTabs/tabs";
 import tabData from "../components/homeTabs/dataTabs";
 import MainComp from "../components/mainComp/mainComp";
+import { TextContext } from "../contex/TextContext";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,9 +45,11 @@ function a11yProps(index) {
 export default function BasicTabs() {
   const [tabIndex, setTabIndex] = React.useState(0);
   const [subTabsContent, setSubTabsContent] = React.useState([]);
+  const { changeText } = useContext(TextContext);
 
   const handleChange = (event, newValue) => {
     setTabIndex(newValue);
+    changeText("");
   };
 
   const allSubTabs = tabData;
