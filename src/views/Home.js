@@ -7,7 +7,8 @@ import Box from "@mui/material/Box";
 import SubTabs from "../components/homeTabs/tabs";
 import tabData from "../components/homeTabs/dataTabs";
 import MainComp from "../components/mainComp/mainComp";
-import { TextContext } from "../contex/TextContext";
+// import { TextContext } from "../contex/TextContext";
+import {useText} from "../contex/TextContext";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,9 +44,9 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs() {
-  const [tabIndex, setTabIndex] = React.useState(0);
+  const [tabIndex, setTabIndex] = React.useState(1);
   const [subTabsContent, setSubTabsContent] = React.useState([]);
-  const { changeText } = useContext(TextContext);
+  const { changeText } = useText();
 
   const handleChange = (event, newValue) => {
     setTabIndex(newValue);
@@ -98,7 +99,7 @@ export default function BasicTabs() {
             </Tabs>
           </Box>
 
-          <CustomTabPanel value={tabIndex} index={tabIndex}>
+          <CustomTabPanel value={tabIndex} index={tabIndex} className="subTabsStyles">
             <SubTabs content={subTabsContent} />
           </CustomTabPanel>
         </Box>

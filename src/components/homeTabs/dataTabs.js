@@ -10,7 +10,7 @@ const tabData = [
         imageURL: "./subTabsImages/generalTab/setting.png",
       },
       {
-        name: "Commands Setting",
+        name: "Commands",
         imageURL: "./subTabsImages/generalTab/command.png",
       },
       {
@@ -107,7 +107,7 @@ const tabData = [
         imageURL: "./subTabsImages/generalTab/setting.png",
       },
       {
-        name: "Setting Upload download",
+        name: "Upload download",
         imageURL: "./subTabsImages/generalTab/setting.png",
       },
       {

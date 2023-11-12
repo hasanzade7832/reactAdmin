@@ -1,4 +1,7 @@
 /* Home */
+/* body{
+  overflow: hidden;
+} */
 
 .headerTitle {
   text-align: center;
@@ -12,6 +15,60 @@
   padding: 1px;
   margin-top: -21px;
 }
+
+.subTabsStyles{
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgb(211, 209, 206,0.3));
+
+
+}
+
+/*/////////////////////////splitpan css/////////////////////////////////////// */
+
+.Resizer{
+  background: #e88fa171;
+  opacity: 0.2;
+  box-sizing: border-box;
+  background-clip: padding-box;
+}
+
+.Resizer:hover{
+  transition: all 2s ease;
+}
+
+.Resizer.horizental{
+  /* height: 11px; */
+  margin: -5px 0;
+  cursor: row-resize;
+  width: 100%;
+}
+
+.Resizer.horizental:hover{
+  /* border-top: 1px solid black;
+  border-bottom: 1px solid black ; */
+}
+
+.Resizer.vertical{
+  width: 11px;
+  margin: 0 -5px;
+
+  cursor: col-resize;
+}
+
+.Resizer.vertical:hover{
+  /* border-left: 1px solid black;
+  border-right: 1px solid black; */
+}
+
+.Resizer.disabled{
+  cursor: not-allowed;
+}
+
+.Resizer.disabled:hover{
+  border-color: transparent;
+}
+
+/*/////////////////////////splitpan css/////////////////////////////////////// */
+
 
 .rootLogin{
   display: flex;

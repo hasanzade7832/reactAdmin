@@ -1,17 +1,24 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import TableConfiguration from "../components/generalTab/tableConfiguration";
+import TableConfiguration from "../components/generalTab/configuration/tableConfiguration";
+import TableCommand from "../components/generalTab/commands/tableCommands";
 
 const TextContext = createContext();
 
 const TextProvider = ({ children }) => {
   const [text, setText] = useState("");
   const [tableComponent, setTableComponent] = useState("");
+  const [showSplitPane, setShowSplitPane] = useState(false);
 
   useEffect(() => {
     if (text === "Configuration") {
       setTableComponent(TableConfiguration);
+      setShowSplitPane(true);
+    } else if (text === "Commands") {
+      setTableComponent(TableCommand);
+      setShowSplitPane(true);
     } else {
       setTableComponent("");
+      setShowSplitPane(false);
     }
   }, [text]);
 
@@ -20,7 +27,7 @@ const TextProvider = ({ children }) => {
   };
 
   return (
-    <TextContext.Provider value={{ text, changeText, tableComponent }}>
+    <TextContext.Provider value={{ text, changeText, tableComponent, showSplitPane }}>
       {children}
     </TextContext.Provider>
   );
@@ -34,4 +41,4 @@ const useText = () => {
   return context;
 };
 
-export { TextProvider, useText, TextContext };
+export { TextProvider, useText };
