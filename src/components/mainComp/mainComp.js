@@ -7,13 +7,19 @@ const MainComp = () => {
   return (
     <>
       {showSplitPane && (
-        <SplitPane split="vertical" minSize={50} defaultSize="55%" flex="1" minWidth={100} >
+        <SplitPane
+          split="vertical"
+          minSize={50}
+          defaultSize="55%"
+          flex="1"
+          minWidth={100}
+        >
           <div
             style={{
               backgroundColor: "#e1e1e1",
               width: "100%",
               height: "100%",
-              overflow:"hidden"
+              overflow: "hidden",
             }}
           >
             <span
