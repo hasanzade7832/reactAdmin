@@ -6,7 +6,7 @@ const TextContext = createContext();
 
 const TextProvider = ({ children }) => {
   const [text, setText] = useState("");
-  const [tableComponent, setTableComponent] = useState("");
+  const [tableComponent, setTableComponent] = useState(null);
   const [showSplitPane, setShowSplitPane] = useState(false);
 
   useEffect(() => {
@@ -17,8 +17,8 @@ const TextProvider = ({ children }) => {
       setTableComponent(TableCommand);
       setShowSplitPane(true);
     } else {
-      setTableComponent("");
-      setShowSplitPane(false);
+      setTableComponent(null);
+      setShowSplitPane(false)
     }
   }, [text]);
 

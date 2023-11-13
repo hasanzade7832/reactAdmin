@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  FormControl,
-  Input,
-  InputLabel,
-  Paper,
-} from "@material-ui/core";
+import { Button, FormControl, Input, InputLabel, Paper } from "@material-ui/core";
 import projectServices from "../services/project.services";
 import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +10,7 @@ import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { ScaleLoader } from "react-spinners";
+import VueCookies from "vue-cookies";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -53,15 +48,7 @@ const LoginForm = () => {
     setLoading(true);
 
     // event.preventDefault();
-    const weekDay = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
+    const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     const d = new Date();
     const year = d.getUTCFullYear();
@@ -71,18 +58,18 @@ const LoginForm = () => {
     const dow = d.getUTCDay();
     // const dayOfWeek = dow.getUTCDay();
 
-    const myKeyConst =
-      year + "-" + month + "-" + dayOfMonth + "-" + hour + "-" + weekDay[dow];
+    const myKeyConst = year + "-" + month + "-" + dayOfMonth + "-" + hour + "-" + weekDay[dow];
+
     console.log("keeeey", dow);
     console.log("weeekday", weekDay[dow]);
 
-    const seqKeyConst = CryptoJS.SHA512(
-      CryptoJS.enc.Utf8.parse(myKeyConst)
-    ).toString(CryptoJS.enc.Hex);
+    const seqKeyConst = CryptoJS.SHA512(CryptoJS.enc.Utf8.parse(myKeyConst)).toString(
+      CryptoJS.enc.Hex
+    );
 
-    const passwordConst = CryptoJS.SHA512(
-      CryptoJS.enc.Utf8.parse(password)
-    ).toString(CryptoJS.enc.Hex);
+    const passwordConst = CryptoJS.SHA512(CryptoJS.enc.Utf8.parse(password)).toString(
+      CryptoJS.enc.Hex
+    );
 
     projectServices
       .webLogin({
@@ -91,6 +78,7 @@ const LoginForm = () => {
         SeqKey: seqKeyConst,
       })
       .then((res) => {
+        VueCookies.set("token",res.data.MyUser.TTKK + ":" + res.data.MyUser.Username);
         setMessage("login success");
         setSeverity("success");
         setTimeout(() => {
@@ -159,12 +147,7 @@ const LoginForm = () => {
                     style={{ position: "absolute", left: -60 }}
                     color="action"
                   />
-                  <Input
-                    id="userName"
-                    value={userName}
-                    onChange={handleUserNameChange}
-                    required
-                  />
+                  <Input id="userName" value={userName} onChange={handleUserNameChange} required />
                 </FormControl>
                 <FormControl
                   style={{

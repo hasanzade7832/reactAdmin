@@ -2,6 +2,7 @@ import { useText } from "../../contex/TextContext";
 import SplitPane from "react-split-pane";
 
 const MainComp = () => {
+  
   const { tableComponent, showSplitPane } = useText();
 
   return (

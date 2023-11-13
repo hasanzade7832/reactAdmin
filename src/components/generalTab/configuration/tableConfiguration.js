@@ -1,24 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect , useState } from "react";
 import axios from "axios";
+import projectServices from "../../../services/project.services";
 
 const TableConfiguration = () => {
-  // const [data, setData] = useState([]);
+  
+  // const [dataTable, setDataTable] = useState([]);
 
-  // axios
-  //   .get("https://jsonplaceholder.typicode.com/posts")
-  //   .then((response) => {
-  //     setData(response.data);
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error fetching data:", error);
-  //   });
+  useEffect(() => {
+    projectServices
+      .getAllCompany()
+      .then((res) => {
+        console.log("res", dataTable);
+        // setDataTable(res.data);
+      })
+      .catch((err) => {});
+  }, []);
 
   return (
     <div>
-      <h1>مطالب API</h1>
+      <h1>مطالب</h1>
       {/* <ul>
-        {data.map((post) => (
-          <li key={post.id}>{post.title}</li>
+        {dataTable.map((post) => (
+          <li key={post.ID}>{post.Name}</li>
         ))}
       </ul> */}
     </div>

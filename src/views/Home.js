@@ -56,8 +56,10 @@ export default function BasicTabs() {
   const allSubTabs = tabData;
 
   useEffect(() => {
+    console.log(allSubTabs)
+    console.log(tabIndex)
     if (tabIndex >= allSubTabs.length) {
-      setSubTabsContent();
+      setSubTabsContent(1);
       return;
     }
 
